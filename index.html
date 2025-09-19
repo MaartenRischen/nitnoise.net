@@ -3,41 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NITNOISE PAI</title>
+    <title>NITNOISE</title>
     <style>
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            height: 100vh;
+            margin: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Helvetica Neue', sans-serif;
         }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .scene {
+            position: relative;
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #1a1a1a;
-            text-transform: uppercase;
+        .scene img {
+            position: absolute;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            transition: transform 0.1s linear;
         }
-        p {
-            font-size: 1.1rem;
-            color: #555;
-            text-transform: uppercase;
+        #graphic {
+            width: 60%;
+        }
+        #text-logo {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>NITNOISE PAI</h1>
-        <p>COMING SOON.</p>
+    <div class="scene">
+        <img src="FINAL 2_trans.png" id="graphic" alt="Nitnoise Graphic">
+        <img src="LOGO TEXT ONLY.png" id="text-logo" alt="Nitnoise Text Logo">
     </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const scene = document.querySelector('.scene');
+            const graphic = document.getElementById('graphic');
+            const textLogo = document.getElementById('text-logo');
+
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+
+            // Calculate movement ratios
+            const moveX = (clientX - innerWidth / 2) / (innerWidth / 2);
+            const moveY = (clientY - innerHeight / 2) / (innerHeight / 2);
+
+            // Apply transformations. Graphic moves more for a depth effect.
+            graphic.style.transform = `translateX(${moveX * -20}px) translateY(${moveY * -20}px)`;
+            textLogo.style.transform = `translateX(${moveX * 10}px) translateY(${moveY * 10}px)`;
+        });
+    </script>
 </body>
 </html>
